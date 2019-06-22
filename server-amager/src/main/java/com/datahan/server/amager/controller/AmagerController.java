@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @author Jimmy
+ * @author Jim
  */
 @RestController
 @Slf4j
@@ -26,7 +26,9 @@ public class AmagerController {
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
         HttpServletRequest request = ContextHolder.getRequest();
         String hobby = request.getHeader("Hobby");
-        log.info("hobby is a " + hobby);
+        String shape = request.getHeader("Shape");
+        log.info("Hobby is a " + hobby);
+        log.info("Shape is a " + shape);
         return new Greeting(counter.incrementAndGet(),
                 String.format(TEMPLATE, name));
     }

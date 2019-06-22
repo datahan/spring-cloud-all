@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: add_request_header_route
+        uri: http://localhost:9001
+        predicates:
+        - Path=/greeting
+        filters:
+        - AddRequestHeader=Shape, Circle
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/failure

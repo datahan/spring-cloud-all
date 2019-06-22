@@ -1,7 +1,7 @@
 package com.datahan.server.amager.domain;
 
 /**
- * @author Jimmy
+ * @author Jim
  */
 public class Greeting {
 
