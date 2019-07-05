@@ -60,6 +60,7 @@
         <module>eureka-server</module>
         <module>api-gateway</module>
         <module>zuul-gateway</module>
+        <module>mq-support</module>
         <module>server-amager</module>
         <module>server-greenland</module>
     </modules>
