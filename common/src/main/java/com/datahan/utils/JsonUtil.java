@@ -13,7 +13,7 @@ import java.util.Map;
  * json 工具类
  * @author Jim
  */
-public class JSONUtil {
+public class JsonUtil {
 
   public static void main(String[] args) {
     ObjectMapper mapper = buildObjectMapper();
