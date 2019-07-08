@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Slf4j
-public class LoggerAdvice {
+public class LogAspect {
 
     @Around("within(com.datahan..*) && @annotation(logCut)")
     public void around(ProceedingJoinPoint joinPoint, LoggerCut logCut) throws Throwable {

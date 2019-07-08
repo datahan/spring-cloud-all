@@ -1,7 +1,7 @@
 package com.datahan.server.amager.controller;
 
 import com.datahan.common.ContextHolder;
-import com.datahan.log.LogAspect;
+import com.datahan.log.LoggerCut;
 import com.datahan.server.amager.domain.Greeting;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ public class AmagerController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/greeting")
-    @LogAspect("执行greeting方法")
+    @LoggerCut("执行greeting方法")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
         HttpServletRequest request = ContextHolder.getRequest();
         String hobby = request.getHeader("Hobby");
