@@ -63,5 +63,6 @@
         <module>mq-support</module>
         <module>server-amager</module>
         <module>server-greenland</module>
+        <module>server-irian</module>
     </modules>
 </project>
