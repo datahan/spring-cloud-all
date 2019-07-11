@@ -64,5 +64,6 @@
         <module>server-amager</module>
         <module>server-greenland</module>
         <module>server-irian</module>
+        <module>server-santorini</module>
     </modules>
 </project>
