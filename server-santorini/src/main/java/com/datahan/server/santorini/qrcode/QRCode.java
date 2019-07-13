@@ -2,6 +2,7 @@ package com.datahan.server.santorini.qrcode;
 
 
 import com.google.zxing.*;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 
@@ -9,7 +10,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Hashtable;
+import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.Map;
 
 public class QRCode {
@@ -28,8 +30,8 @@ public class QRCode {
          */
         String filePostfix="png";
         File file = new File("D:\\test_QR_CODE."+filePostfix);
-        test.encode("http://www.datahan.com/function/qrcode", file,filePostfix, BarcodeFormat.QR_CODE, 5000, 5000, null);
-        //test.decode(file);
+        //test.encode("http://www.datahan.com/function/qrcode", file,filePostfix, BarcodeFormat.QR_CODE, 5000, 5000, null);
+        test.decode(file);
     }
 
     /**
@@ -99,14 +101,17 @@ public class QRCode {
                 if (image == null) {
                     System.out.println("Could not decode image");
                 }
+
+                Map<DecodeHintType,Object>  HINTS = new EnumMap<DecodeHintType,Object>(DecodeHintType.class);
+                HINTS = new EnumMap<>(DecodeHintType.class);
+                HINTS.put(DecodeHintType.CHARACTER_SET, "utf-8");
+                HINTS.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
+                HINTS.put(DecodeHintType.POSSIBLE_FORMATS, EnumSet.allOf(BarcodeFormat.class));
+                HINTS.put(DecodeHintType.PURE_BARCODE, Boolean.TRUE);
+
                 LuminanceSource source = new BufferedImageLuminanceSource(image);
                 BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-                Result result;
-                @SuppressWarnings("rawtypes")
-                Hashtable hints = new Hashtable();
-                //解码设置编码方式为：utf-8
-                hints.put(DecodeHintType.CHARACTER_SET, "utf-8");
-                result = new MultiFormatReader().decode(bitmap, hints);
+                Result result = new MultiFormatReader().decode(bitmap, HINTS);
                 String resultStr = result.getText();
                 System.out.println("解析后内容：" + resultStr);
             } catch (IOException ioe) {
