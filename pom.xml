@@ -65,5 +65,6 @@
         <module>server-greenland</module>
         <module>server-irian</module>
         <module>server-santorini</module>
+        <module>server-harbour</module>
     </modules>
 </project>
