@@ -5,7 +5,10 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-
-logging:
-  level: off
-
+  instance:
+    hostname: localhost
+  server:
+    enable-self-preservation: false #生产环境中置为true
+spring:
+  application:
+    name: eureka-server

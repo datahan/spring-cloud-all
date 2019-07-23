@@ -1,6 +1,9 @@
 spring:
+  application:
+    name: Spring Cloud Gateway
   cloud:
     gateway:
+      enabled: true #开启或关闭gateway
       routes:
       - id: add_request_header_route
         uri: http://localhost:9001
@@ -12,3 +15,8 @@ spring:
           args:
             name: fallbackcmd
             fallbackUri: forward:/failure
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
