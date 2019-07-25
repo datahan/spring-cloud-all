@@ -20,3 +20,13 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+    enabled: false #开启或关闭eureka客户端
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
