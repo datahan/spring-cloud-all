@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+/**
+ * @author Jim Han
+ */
 @Configuration
 public class ActuatorSecurity extends WebSecurityConfigurerAdapter {
 

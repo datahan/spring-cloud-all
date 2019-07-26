@@ -1,6 +1,6 @@
 spring:
   application:
-    name: Spring Cloud Gateway
+    name: Spring-Cloud-Gateway
   cloud:
     gateway:
       enabled: true #开启或关闭gateway
@@ -15,12 +15,19 @@ spring:
           args:
             name: fallbackcmd
             fallbackUri: forward:/failure
+      discovery:
+        locator:
+          enabled: true
+  security:
+    user:
+      name: dev
+      roles: handon
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-    enabled: false #开启或关闭eureka客户端
+    enabled: true #开启或关闭eureka客户端
 
 management:
   endpoint:
@@ -30,3 +37,7 @@ management:
     web:
       exposure:
         include: "*"
+
+app:
+  httpbin:
+    uri: http://httpbin.org:80

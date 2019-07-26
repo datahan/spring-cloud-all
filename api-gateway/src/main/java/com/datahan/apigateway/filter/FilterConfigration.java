@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import reactor.core.publisher.Mono;
 
+/**
+ * @author Jim Han
+ */
 @Slf4j
 @Configuration
 public class FilterConfigration {
