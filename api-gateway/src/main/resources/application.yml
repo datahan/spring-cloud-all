@@ -22,6 +22,7 @@ spring:
     user:
       name: dev
       roles: handon
+      password: qwer1234
 
 eureka:
   client:
