@@ -66,5 +66,6 @@
         <module>server-irian</module>
         <module>server-santorini</module>
         <module>server-harbour</module>
+        <module>server-malta</module>
     </modules>
 </project>
