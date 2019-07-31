@@ -15,12 +15,13 @@ import org.springframework.stereotype.Component;
 public class LogAspect {
 
     @Around("within(com.datahan..*) && @annotation(logCut)")
-    public void around(ProceedingJoinPoint joinPoint, LoggerCut logCut) throws Throwable {
+    public Object around(ProceedingJoinPoint joinPoint, LoggerCut logCut) throws Throwable {
         long startTime = System.currentTimeMillis();
         log.info("{} 方法开始, 入参: {} ", logCut.value(), JsonUtil.toJsonString(joinPoint.getArgs()));
         Object result = joinPoint.proceed();
         long costTime = System.currentTimeMillis() - startTime;
         log.info("{} 方法结束, 出参: {} , 耗时：{}", logCut.value(), JsonUtil.toJsonString(result), costTime);
+        return result;
     }
 
     @AfterThrowing(pointcut = "within(com.datahan..*) && @annotation(logCut)", throwing = "ex")

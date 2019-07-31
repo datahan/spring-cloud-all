@@ -1,14 +1,16 @@
 #### 项目介绍
 1. server-amager
-Spring Boot 运行原理， autoconfigure
+Spring Boot 运行原理
+autoconfigure
 
 2. server-greenland
-RabbitMq的使用
+RabbitMq
 
 3. server-irian
 Redis
 
 4. server-santorini
+依赖amager作为starter包进行自动配置
 二维码
 
 5. server-harbour
@@ -16,6 +18,8 @@ spring-security
 
 6. server-malta
 spring boot actuator
+
+7. server-kalimantan
 
 #### common包
 1. Spring上下文
