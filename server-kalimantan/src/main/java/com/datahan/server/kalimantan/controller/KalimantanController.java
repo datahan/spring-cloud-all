@@ -3,6 +3,7 @@ package com.datahan.server.kalimantan.controller;
 import com.datahan.server.kalimantan.domain.Greeting;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,14 @@ public class KalimantanController {
 
     @GetMapping("/amager/greeting")
     public Greeting greeting() {
-        return this.restTemplate.getForObject("http://localhost:9001/amager/greeting", Greeting.class);
+        // 注意：前面的amager是虚拟主机地址，等同于ip:port，后者amager是项目名
+        return this.restTemplate.getForObject("http://amager/amager/greeting", Greeting.class);
+    }
+
+    @GetMapping("/log-instantce")
+    public void logUserInstance() {
+        ServiceInstance serviceInstance = this.loadBalancerClient.choose("amager");
+        log.info("{}:{}:{}", serviceInstance.getServiceId(), serviceInstance.getHost(), serviceInstance.getPort());
     }
 
 }
