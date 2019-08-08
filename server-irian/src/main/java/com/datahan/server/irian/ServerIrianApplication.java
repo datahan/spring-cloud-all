@@ -3,6 +3,7 @@ package com.datahan.server.irian;
 import com.datahan.server.irian.domain.Cat;
 import com.datahan.server.irian.domain.Student;
 import com.datahan.server.irian.repository.StudentRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -30,8 +32,11 @@ public class ServerIrianApplication {
     public class Runner implements CommandLineRunner {
 
         //@Autowired
-        @Resource(name = "redisTemplate")
+        @Resource(name = "redisTemplateCustom")
         private RedisTemplate redisTemplate;
+
+        @Autowired
+        private StringRedisTemplate stringRedisTemplate;
 
         @Autowired
         private StudentRepository studentRepository;
@@ -55,6 +60,10 @@ public class ServerIrianApplication {
 
             // repository delete
             studentRepository.deleteById(student.getId());
+
+            // using stringRedisTemplate
+            ObjectMapper objectMapper = new ObjectMapper();
+            stringRedisTemplate.opsForValue().set("toStringCat", objectMapper.writeValueAsString(new Cat("blue", 99)));
         }
     }
 
