@@ -7,7 +7,7 @@ autoconfigure
 RabbitMq
 
 3. server-irian
-Redis
+Redis, Redis Repository
 
 4. server-santorini
 依赖amager作为starter包进行自动配置
@@ -20,6 +20,7 @@ spring-security
 spring boot actuator
 
 7. server-kalimantan
+RestTemplate, LoadBalancerClient
 
 #### common包
 1. Spring上下文

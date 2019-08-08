@@ -37,6 +37,8 @@ public class AppConfig {
         template.setConnectionFactory(lettuceConnectionFactory());
         template.setKeySerializer(RedisSerializer.string());
         template.setValueSerializer(RedisSerializer.json());
+
+
         template.afterPropertiesSet();
         return template;
     }
