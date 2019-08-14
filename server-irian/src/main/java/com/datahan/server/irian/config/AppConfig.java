@@ -42,15 +42,21 @@ public class AppConfig {
         RedisTemplate<String, T> template = new RedisTemplate<>();
         template.setConnectionFactory(lettuceConnectionFactory());
 
+        // 使用jackson的redis序列化器，默认使用的是jdk序列化器
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        //将类名称序列化到json串中，去掉会导致得出来的的是LinkedHashMap对象，直接转换实体对象会失败
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        //设置输入时忽略JSON字符串中存在而Java对象实际没有的属性
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
 
         template.afterPropertiesSet();
         return template;
