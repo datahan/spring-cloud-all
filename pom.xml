@@ -76,5 +76,7 @@
         <module>server-harbour</module>
         <module>server-malta</module>
         <module>server-kalimantan</module>
+        <module>server-sulawesi</module>
+        <module>server-sumatra</module>
     </modules>
 </project>

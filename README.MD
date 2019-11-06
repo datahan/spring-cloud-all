@@ -22,6 +22,11 @@ spring boot actuator
 7. server-kalimantan
 RestTemplate, LoadBalancerClient
 
+8. server-sulawesi
+
+9. server-sumatra
+
+
 #### common包
 1. Spring上下文
 2. 统一返回对象
